@@ -1,0 +1,212 @@
+.Containter {
+  margin: 10px 20px 10px 20px;
+}
+.Containter>input{
+     margin-right: 20px;
+     margin-bottom: 20px;
+}
+.Containter>select{
+    margin-right: 20px;
+    min-width: 150pt;
+}
+
+
+
+.row>div{
+  margin-top: 5px;
+}
+.row{
+  margin-left:5px;
+  margin-bottom: 5px;
+}
+.row>div>label{
+  min-width: 85px;
+}
+.row>div>input{
+  min-width: 100px;
+}
+
+button {
+    margin-left: 10px;
+    border: none;
+    color: white;
+    padding: 1px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 50px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  .dugme{
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+
+  .dugme:hover{
+    background-color: #008CBA;
+    color: white;
+  }
+
+  .dugmici{
+    font-size: 12px;
+    width: 200px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+
+  .dugmici:hover{
+    background-color: #008CBA;
+    color: white;
+  }
+
+  /*.novaPonuda {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+  
+  .novaPonuda:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+  */
+  .dodajProizvod {
+    font-size: 12px;
+    width: 200px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+  
+  .dodajProizvod:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+
+  .obrisiPr {
+    width: 200px;
+    font-size: 12px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+  
+  .obrisiPr:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+
+  .izmeniPr {
+    font-size: 12px;
+    width: 200px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+  
+  .izmeniPr:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+
+  .obrisiStavku {
+    width: 200px;
+    font-size: 12px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+  
+  .obrisiStavku:hover {
+    background-color: white;
+    color: #008CBA;
+  }
+  
+
+  .izmeniStavku {
+    width: 200px;
+    font-size: 12px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+
+  .izmeniStavku:hover {
+    background-color: white;
+    color: #008CBA;
+  }
+  
+  /*
+  .zapamti {
+    width: 210px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+  
+  .zapamti:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+  .obrisiPonudu {
+    width: 210px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+  
+  .obrisiPonudu:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+  */
+  
+  #stavkaPonude {
+    border-style: solid;
+     border-width: 2px;
+    border-color:#008CBA;
+    
+  }
+
+ 
+ 
+  #tabelaStavki {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 98%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    text-align: center;
+  }
+  
+  #tabelaStavki, #tabelaStavki td, #tabelaStavki th {
+    border: 1px solid black;
+    padding: 8px;
+  }
+  
+  #tabelaStavki tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #tabelaStavki tr:hover {background-color: #008CBA}
+  
+  #tabelaStavki th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color:#008CBA;
+    color: white;
+  }
+  #tabelaStavki, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  input.ng-invalid.ng-touched{
+    border: 1px solid red;
+  }
+

@@ -1,0 +1,29 @@
+[
+    {
+        "pib": "111222333",
+        "naziv": "Djole Trade",
+        "mesto": "Beograd",
+        "ulica": "Avalska",
+        "broj": "12",
+        "telefon": "+38162111000",
+        "email": "djordje@gmail.com"
+    },
+    {
+        "pib": "222333111",
+        "naziv": "MarketTrade",
+        "mesto": "Beograd",
+        "ulica": "Topolska",
+        "broj": "18",
+        "telefon": "+38165222333",
+        "email": "market@gmail.com"
+    },
+    {
+        "pib": "333111222",
+        "naziv": "Prodavnica",
+        "mesto": "Beograd",
+        "ulica": "Jove Ilica",
+        "broj": "15",
+        "telefon": "+381641234567",
+        "email": "store@gmail.com"
+    }
+]

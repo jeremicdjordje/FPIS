@@ -1,0 +1,84 @@
+<form [formGroup]="kupacForma" (ngSubmit)="onSubmitKupac()">
+    <div class="container">
+        <div>
+            <div class="row input-kupac">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <label for="pib">PIB:</label>
+                    <input type="text" name="pib" id="pib" placeholder="9 cifara" formControlName="pib"
+                        class="form-control" required>
+                    <div *ngIf="!kupacForma.get('pib').valid && kupacForma.get('pib').touched"
+                        class="help-block">Unesite
+                        validan PIB!</div>
+                </div>
+                <div class="dugmici">
+                    <button type="button" class="dugme" (click)="pronadjiKupca()">Pronađi kupca</button>
+                    <button type="button" (click)="obrisiKupca()" class="dugme">Obriši kupca</button>
+                </div>
+                <br>
+                <hr>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <label for="naziv">Naziv:</label>
+                    <input type="text" name="naziv" id="naziv" formControlName="naziv" class="form-control">
+                    <div *ngIf="!kupacForma.get('naziv').valid && kupacForma.get('naziv').touched"
+                        class="help-block">Unesite
+                        naziv kupca!</div>
+                </div>
+                
+                <div class="lokacija">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <label for="mesto">Mesto:</label>
+                        <select name="mesto" (change)="promenaMesta()" formControlName="mesto" style="width: 150px"
+                            class="form-control">
+                            <option *ngFor="let mesto of mesta | async" [value]="mesto.naziv">{{ mesto.naziv }}</option>
+                        </select>
+                        <div *ngIf="!kupacForma.get('mesto').valid && kupacForma.get('mesto').touched"
+                            class="help-block">Izaberite
+                            mesto!</div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <label for="ulica">Ulica:</label>
+                        <select name="ulica"  formControlName="ulica" style="width: 150px"
+                            class="form-control">
+                            <option *ngFor="let ulica of ulice | async" [value]="ulica.naziv">{{ ulica.naziv }}</option>
+                        </select>
+                        <div *ngIf="!kupacForma.get('ulica').valid && kupacForma.get('ulica').touched"
+                            class="help-block">Izaberite
+                            ulicu!</div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <label for="broj">Broj:</label>
+                        <input type="text" name="broj" id="broj" formControlName="broj" class="form-control">
+                        <div *ngIf="!kupacForma.get('broj').valid && kupacForma.get('broj').touched"
+                            class="help-block">Unesite
+                            broj!</div>
+                    </div>
+                </div>
+                
+                <div class="telmail">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <label for="telefon">Broj telefona:</label>
+                        <input type="text" name="telefon" id="telefon" placeholder="npr. +38162000000"
+                            formControlName="telefon" class="form-control">
+                        <div *ngIf="!kupacForma.get('telefon').valid && kupacForma.get('telefon').touched"
+                            class="help-block">Unesite broj telefona!</div>
+                    </div>
+                    
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                        <label for="email">E-mail:</label>
+                        <input type="text" name="email" id="email" placeholder="npr. kupac@gmail.com"
+                            formControlName="email" class="form-control">
+                        <div *ngIf="!kupacForma.get('email').valid && kupacForma.get('email').touched"
+                            class="help-block">Unesite
+                            email adresu!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dugmici">
+                <button class="dugme" type="submit" [disabled]="!kupacForma.valid">Potvrdi</button>
+                <button class="dugme" (click)="azurirajKupca()" type="button">Izmeni</button>
+                <button class="dugme" (click)="onReset()" type="button">Resetuj formu</button>
+            </div>
+        </div>
+    </div>
+</form>

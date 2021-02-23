@@ -1,0 +1,31 @@
+<form [formGroup]="formaPretrage">
+
+    <div>
+        <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
+            <label for="kriterijumPretrage">Pretraži:</label>
+            <input type="text" name="kriterijumPretrage" id="kriterijumPretrage" formControlName="kriterijum" 
+            (keyup)="keyUp.next($event)" class="form-control">
+        </div>
+
+        <table id="tabela">
+            <tr>
+                <th>Broj ponude</th>
+                <th>Datum</th>
+                <th>Za kupca</th>
+                <th>Tip plaćanja</th>
+                <th>Po zahtevu</th>
+                <th>Brisanje</th>
+                <th>Izmena</th>
+            </tr>
+            <tr *ngFor="let ponuda of listaPrikaz; let i = index" (click)="selectRow(i)">
+                <td>{{ ponuda.ponudaID }}</td>
+                <td>{{ ponuda.datum }}</td>
+                <td>{{ ponuda.kupac.naziv }}</td>
+                <td>{{ ponuda.tip.naziv }}</td>
+                <td>{{ ponuda.zahtev.zahtevID }}</td>
+                <td><button class="dugme" (click)="openDialogVer(i)">Obriši</button></td>
+                <td><button class="dugme" (click)="otvoriEdit(ponuda.ponudaID)">Izmeni</button></td>
+            </tr>
+        </table>
+    </div>
+</form>
