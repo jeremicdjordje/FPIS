@@ -101,6 +101,7 @@ export class KupacComponent implements OnInit {
     this.metodeAPI.unesiKupca(obj).subscribe(
       (data) => {
         console.log('Data:', data);
+        
       },
       (error) => {
         console.log('Error:', error);

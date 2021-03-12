@@ -1,7 +1,7 @@
 import { ProizvodModel } from "./proizvodModel";
 
 export class StavkaModel{
-    rb: number;
+    rb_stavke: number;
     proizvod: ProizvodModel;
     kolicina: number;
     

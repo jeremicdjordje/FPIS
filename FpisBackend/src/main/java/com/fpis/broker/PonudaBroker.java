@@ -63,6 +63,7 @@ public class PonudaBroker {
         }
         try {
             stavkaPonudeBroker.unesiSveStavke(ponudaDTO.getListaStavki(), vracenaPonuda);
+            
         } catch (Exception e) {
             ponudaRepozitorijum.delete(vracenaPonuda);
             return "Greska u stavkama ponude";
@@ -89,19 +90,7 @@ public class PonudaBroker {
     public Integer vratiID() {
         return ponudaRepozitorijum.getMaxId() + 1;
     }
-
-    public String azurirajPonudu(PonudaDTO ponudaDTO, Ponuda p) {
-        //azuriraj stavke
-        Optional<Ponuda> ponuda = ponudaRepozitorijum.findById(ponudaDTO.getPonudaID());
-        stavkaPonudeBroker.azurirajStavke(ponudaDTO.getListaStavki());
-        //azuriraj ponudu
-        
-//        Ponuda p = ponuda1.get().setListaStavki(ponudaDTO.getListaStavki());        
-//        Ponuda vracenaPonuda = ponudaRepozitorijum.save(ponuda1.get());
-
-          return "sve ok";
-    }
-
+    
     public String azurirajPonudu(PonudaDTO ponudaDTO) {
         //azuriranje stavki
         Optional<Ponuda> ponuda = ponudaRepozitorijum.findById(ponudaDTO.getPonudaID());

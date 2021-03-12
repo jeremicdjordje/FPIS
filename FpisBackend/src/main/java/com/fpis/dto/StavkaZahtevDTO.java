@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class StavkaZahtevDTO {
+
+    private int rb;
     private String proizvod;
     private Double kolicina;
 
@@ -23,8 +25,6 @@ public class StavkaZahtevDTO {
     public void setProizvod(String proizvod) {
         this.proizvod = proizvod;
     }
-    
-    
 
     public Double getKolicina() {
         return kolicina;
@@ -33,6 +33,13 @@ public class StavkaZahtevDTO {
     public void setKolicina(Double kolicina) {
         this.kolicina = kolicina;
     }
-    
-   
+
+    public int getRb() {
+        return rb;
+    }
+
+    public void setRb(int rb) {
+        this.rb = rb;
+    }
+
 }

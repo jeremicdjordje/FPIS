@@ -2,37 +2,32 @@
     <div class="container">
         <div>
             <div class="row">
-
-                <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
+                <div class="col-sm-8 col-md-8 col-lg-4 col-xl-6">
                     <label for="brojPonude">Broj ponude:</label>
                     <input type="text" name="brojPonude" id="brojPonude" disabled="disabled"
                         formControlName="brojPonude" class="form-control">
-
                 </div>
-                <button class="dugme" (click)="novaPonuda()" type="button">Nova ponuda</button>
-                <hr>
-                <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-1">
+                    <button class="dugme" (click)="novaPonuda()" type="button">Nova ponuda</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-md-8 col-lg-4 col-xl-5">
                     <label for="datum">Datum:</label>
                     <input type="date" id="datum" name="datum" formControlName="datum" class="form-control" />
-                    <div *ngIf="!ponudaForma.get('datum').valid && ponudaForma.get('datum').touched"
-                        class="help-block">Izaberite datum!</div>
+                    <div *ngIf="!ponudaForma.get('datum').valid && ponudaForma.get('datum').touched" class="help-block">
+                    </div>
                 </div>
-                <br>
-                <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-md-8 col-lg-4 col-xl-5">
                     <label for="kupac">Za kupca:</label>
                     <select name="kupac" [(ngModel)]="selectedKupac" formControlName="kupac" style="width: 150px"
                         class="form-control">
                         <option *ngFor="let kupac of kupci | async" [value]="kupac.naziv">{{ kupac.naziv }}</option>
                     </select>
-                    <div *ngIf="!ponudaForma.get('kupac').valid && ponudaForma.get('kupac').touched"
-                        class="help-block">Izaberite kupca!</div>
-                </div>
-                <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
-                    <label for="zahtev">Po zahtevu:</label>
-                    <input type="number" name="zahtev" id="zahtev" formControlName="zahtev" class="form-control">
-                    <div *ngIf="!ponudaForma.get('zahtev').valid && ponudaForma.get('zahtev').touched"
-                        class="help-block">Unesite zahtev!</div>
-                    <br>
+                    <div *ngIf="!ponudaForma.get('kupac').valid && ponudaForma.get('kupac').touched" class="help-block">
+                    </div>
                 </div>
                 <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
                     <label for="tip">Tip plaćanja:</label>
@@ -40,56 +35,78 @@
                         class="form-control">
                         <option *ngFor="let tip of tipovi | async">{{ tip.naziv }}</option>
                     </select>
-                    <div *ngIf="!ponudaForma.get('tip').valid && ponudaForma.get('tip').touched"
-                        class="help-block">Izaberite tip plaćanja!</div>
+                    <div *ngIf="!ponudaForma.get('tip').valid && ponudaForma.get('tip').touched" class="help-block">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-md-8 col-lg-4 col-xl-6">
+                    <label for="zahtev">Po zahtevu:</label>
+                    <input type="number" name="zahtev" id="zahtev" formControlName="zahtev" class="form-control">
+                    <div *ngIf="!ponudaForma.get('zahtev').valid && ponudaForma.get('zahtev').touched"
+                        class="help-block"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="unosStavki">
+                    <div id="leva">
+                        <div class="col-sm-8 col-md-8 col-lg-6 col-xl-4">
+                            <label for="proizvod">Proizvod:</label>
+                            <select name="proizvod" formControlName="proizvod" style="width: 150px"
+                                class="form-control">
+                                <option *ngFor="let proizvod of proizvodi" value={{proizvod.proizvodID}}>{{
+                                    proizvod.naziv
+                                    }}
+                                </option>
+                            </select>
+                            <div *ngIf="!ponudaForma.get('proizvod').valid && ponudaForma.get('proizvod').touched"
+                                class="help-block"></div>
+                        </div>
+
+                        <div class="col-sm-8 col-md-8 col-lg-6 col-xl-4">
+                            <label for="kolicina">Količina:</label>
+                            <input type="number" name="kolicina" id="kolicina" formControlName="kolicina"
+                                class="form-control">
+                            <div *ngIf="!ponudaForma.get('kolicina').valid && ponudaForma.get('kolicina').touched"
+                                class="help-block"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="desna">
+                    <button type="button" class="dugmici" (click)="dodajStavku()">Dodaj proizvod</button>
+                    <button type="button" class="dugmici" (click)="potvrdiIzmenu()">Izmeni Proizvod</button>
                 </div>
             </div>
 
-            <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
-                <label for="proizvod">Proizvod:</label>
-                <select name="proizvod" formControlName="proizvod" style="width: 150px" class="form-control">
-                    <option *ngFor="let proizvod of proizvodi" value={{proizvod.proizvodID}}>{{ proizvod.naziv }}</option>
-                </select>
-                <div *ngIf="!ponudaForma.get('proizvod').valid && ponudaForma.get('proizvod').touched"
-                    class="help-block">Izaberite proizvod!</div>
-            </div>
-            <br>
-            <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
-                <label for="kolicina">Količina:</label>
-                <input type="number" name="kolicina" id="kolicina" formControlName="kolicina" class="form-control">
-                <div *ngIf="!ponudaForma.get('kolicina').valid && ponudaForma.get('kolicina').touched"
-                    class="help-block">Unesite količinu!</div>
+            <br style="clear:both;" />
+            <div>
+                <table class="tabelaStavki" name="tabelaStavki" id="tabelaStavki">
+                    <tr>
+                        <th>RB</th>
+                        <th>Proizvod</th>
+                        <th>Količina</th>
+                        <th>Jedinica mere</th>
+                        <th>Brisanje stavke</th>
+                        <th>Izmena stavke</th>
+                    </tr>
+                    <tr *ngFor="let stavka of listaStavki; let i = index" (click)="selectRow(i)"
+                        [ngClass]="{'highlight': selectedRow === i}">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ stavka.proizvod.naziv }}</td>
+                        <td>{{ stavka.kolicina }}</td>
+                        <td>{{ stavka.proizvod.jedinicaMere.oznaka}}</td>
+                        <td><button type="button" class="obrisiStavku" (click)="obrisiStavku(stavka)">Obrisi</button>
+                        </td>
+                        <td><button type="button" class="izmeniStavku" (click)="izmeniStavku(stavka)">Izmeni</button>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
-            <button type="button" class="dugmici" (click)="dodajStavku()">Dodaj proizvod</button>
-            <button type="button" class="dugmici" (click)="potvrdiIzmenu()">Izmeni Proizvod</button>
-            
-            <div>
-                    <table class="tabelaStavki" name="tabelaStavki" id="tabelaStavki">
-                        <tr>
-                            <th>RB</th>
-                            <th>Proizvod</th>
-                            <th>Količina</th>
-                            <th>Jedinica mere</th>
-                            <th>Brisanje stavke</th>
-                            <th>Izmena stavke</th>
-                        </tr>
-                        <tr *ngFor="let stavka of listaStavki; let i = index" (click)="selectRow(i)"
-                            [ngClass]="{'highlight': selectedRow === i}">
-                            <td>{{ stavka.rb }}</td>
-                            <td>{{ stavka.proizvod }}</td>
-                            <td>{{ stavka.kolicina }}</td>
-                            <td>{{ stavka.jedinicaMere}}</td>
-                            <td><button type="button" class="obrisiStavku" (click)="obrisiStavku(stavka)">Obrisi</button></td>
-                            <td><button type="button" class="izmeniStavku" (click)="izmeniStavku(stavka)">Izmeni</button></td>
-                        </tr>
-                    </table>
-            </div>
-            <hr>
             <div>
                 <button type="button " class="dugme" [disabled]="!ponudaForma.valid"
                     (click)="sacuvajPonudu()">Zapamti</button>
-                    <button type="button " class="dugme" [disabled]="!ponudaForma.valid"
+                <button type="button " class="dugme" [disabled]="!ponudaForma.valid"
                     (click)="izmeniPonudu()">Izmeni</button>
                 <button class="dugme" (click)="onReset()" type="button">Resetuj formu</button>
             </div>

@@ -5,19 +5,13 @@
  */
 package com.fpis;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 /**
  *
@@ -28,7 +22,7 @@ public class StavkaPonude {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int rbStavke;
+    private int rb_stavke;
     @ManyToOne
     @JoinColumn(name = "proizvodID")
     private Proizvod proizvod;
@@ -54,14 +48,7 @@ public class StavkaPonude {
         this.kolicina = kolicina;
     }
 
-    public int getRbStavke() {
-        return rbStavke;
-    }
-
-    public void setRbStavke(int rbStavke) {
-        this.rbStavke = rbStavke;
-    }
-
+ 
     public Proizvod getProizvod() {
         return proizvod;
     }
@@ -77,6 +64,14 @@ public class StavkaPonude {
 
     public void setPonuda(Ponuda ponuda) {
         this.ponudaID = ponuda;
+    }
+
+    public int getRb_stavke() {
+        return rb_stavke;
+    }
+
+    public void setRb_stavke(int rb_stavke) {
+        this.rb_stavke = rb_stavke;
     }
 
 }

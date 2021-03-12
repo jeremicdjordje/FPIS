@@ -1,26 +1,19 @@
-.Container{
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-right: auto;
-  margin-left: auto;
-}
-.Container>div>label{
-  margin-left: auto;
-  margin-bottom: auto;
-}
-.Container>input{
-  margin-left: auto;
-  margin-bottom: auto;
-}
-.row.input-kupac>div>label{
-  min-width: 106px;
-}
-.row.input-kupac>div>input{
-  min-width: 225px;
-  
+
+.row.input-kupac{
+  margin: 20px;
 }
 
 
+input{
+  width: 300px;
+
+}
+
+select{
+  max-width: 300px;
+  min-width: 300px;
+  width: 300px !important;
+}
 /*
 select{
   size: 300%px;
@@ -35,16 +28,15 @@ button{
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-bottom: 4px;
-  margin-left: 19pt;
-  margin-top: 8pt;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-top: 23px;
   transition-duration: 0.4s;
   cursor: pointer;
+  width: auto;
 }
 
-
 .dugme{
-
   background-color: white; 
   color: black; 
   border: 2px solid #008CBA;
@@ -55,14 +47,7 @@ button{
   color: white;
 }
 
-.lokacija{
-  float:left;
-  margin-bottom: 30px;
-}
 
-.telmail{
-  float:left;
-}
 
 
 
@@ -147,6 +132,7 @@ button{
   
 */
 
+.help-block { display: none; }
 
 
 input.ng-invalid.ng-touched{

@@ -112,6 +112,7 @@ export class PonudaComponent implements OnInit {
       })).subscribe(ponuda => {
         this.ponuda = ponuda;
         this.listaStavki = ponuda.listaStavki;
+        console.log(this.listaStavki)
         this.inicijalizacijaForme(ponuda);
       })
   }
@@ -127,7 +128,7 @@ export class PonudaComponent implements OnInit {
       listaStavki: this.fb.array(
         this.listaStavki ? this.listaStavki.map((stavka) => {
           return this.fb.group({
-            proizvod: [stavka.proizvod, Validators.required],
+            proizvod: [stavka.proizvod.naziv, Validators.required],
             kolicina: [stavka.kolicina, [Validators.required, Validators.pattern("[0-9]*$")]]
           });
         }) : []),
@@ -157,7 +158,7 @@ export class PonudaComponent implements OnInit {
       if (element.proizvodID === Number(this.ponudaForma.get('proizvod').value)) {
         obj = {
           rb: this.listaStavki.length + 1,
-          proizvod: element.naziv,
+          proizvod: element,
           kolicina: this.ponudaForma.get('kolicina').value,
           jedinicaMere: element.jedinicaMere.oznaka
         }
@@ -238,7 +239,7 @@ export class PonudaComponent implements OnInit {
     this.ponuda.zahtev = pomPonuda.zahtev;
     this.ponuda.tip = pomPonuda.tip;
     this.ponuda.listaStavki = this.listaStavki;
-    
+    console.log(this.listaStavki)
     const obj = {
       ponudaID: this.ponuda.ponudaID,
       datum: this.ponuda.datum,
@@ -247,6 +248,7 @@ export class PonudaComponent implements OnInit {
       tip: this.ponuda.tip,
       listaStavki: this.ponuda.listaStavki
     }
+    console.log(this.ponuda.listaStavki)
 
     console.log(obj);
     this.metodeAPI.unesiPonudu(obj).subscribe(
@@ -288,7 +290,6 @@ export class PonudaComponent implements OnInit {
         console.log('Error:', error);
       }
     );
-
   }
 
   onReset() {

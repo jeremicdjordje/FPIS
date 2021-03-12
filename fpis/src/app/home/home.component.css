@@ -1,5 +1,16 @@
-p{
-     color: #008CBA;
+.row{
+    color: #008CBA;
     text-align: center;
     font-size: 50px;
 }
+
+footer{
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 100%;
+    color: #008CBA; 
+    text-align: right;
+    font-size: 20px;
+}
+

@@ -62,6 +62,7 @@ public class StavkaPonudeBroker {
             stavka.setPonuda(ponuda);
             stavkePonude.add(stavka);
         }
+        
         return stavkePonude;
     }
 
