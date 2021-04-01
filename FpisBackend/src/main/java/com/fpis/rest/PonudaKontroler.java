@@ -42,7 +42,7 @@ public class PonudaKontroler {
     public Ponuda pronadjiPonuduPoID(@RequestParam Integer id) {
         return broker.pronadjiPonuduPoID(id);
     }
-
+    
     @PostMapping("/dodaj")
     public String unesiPonudu(@RequestBody PonudaDTO ponuda) {
         return broker.unesiPonudu(ponuda);

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {
@@ -40,7 +40,7 @@ export class PonudaComponent implements OnInit {
   proizvodi: ProizvodModel[];
   proizvod: ProizvodModel = new ProizvodModel({});
   ponudaForma: FormGroup;
-  rb: number;
+  rb_stavke: number;
 
 
   selectRow(index) {
@@ -155,9 +155,9 @@ export class PonudaComponent implements OnInit {
   dodajStavku() {
     let obj: any;
     this.proizvodi.forEach(element => {
-      if (element.proizvodID === Number(this.ponudaForma.get('proizvod').value)) {
+      if (element.naziv === String(this.ponudaForma.get('proizvod').value)) {
         obj = {
-          rb: this.listaStavki.length + 1,
+          rb_stavke: this.listaStavki.length + 1,
           proizvod: element,
           kolicina: this.ponudaForma.get('kolicina').value,
           jedinicaMere: element.jedinicaMere.oznaka
@@ -196,29 +196,29 @@ export class PonudaComponent implements OnInit {
 
   izmeniStavku(stavka) {
     this.proizvodi.forEach(element => {
-      if (element.naziv === stavka.proizvod) {
-        this.ponudaForma.get('proizvod').setValue(element.proizvodID);
+      if (element === stavka.proizvod) {
+        this.ponudaForma.get('proizvod').setValue(element.naziv);
         return;
       }
     });
     this.ponudaForma.get('kolicina').setValue(stavka.kolicina);
-    this.rb = stavka.rb;
+    this.rb_stavke = stavka.rb_stavke;
   }
 
   potvrdiIzmenu() {
     let pr;
     this.proizvodi.forEach(element => {
-      if (element.proizvodID === Number(this.ponudaForma.get('proizvod').value)) {
+      if (element.naziv === String(this.ponudaForma.get('proizvod').value)) {
         pr = element;
         return;
       }
     });
 
     this.listaStavki.forEach(element => {
-      if (element.rb === this.rb) {
-        element.proizvod = pr.naziv;
+      if (element.rb_stavke === this.rb_stavke) {
+        element.proizvod = pr;
         element.kolicina = this.ponudaForma.get('kolicina').value;
-        this.rb = 0;
+        this.rb_stavke = 0;
         this.ponudaForma.get('proizvod').setValue(null);
         this.ponudaForma.get('kolicina').setValue(null);
         return;
@@ -238,8 +238,9 @@ export class PonudaComponent implements OnInit {
     this.ponuda.kupac = pomPonuda.kupac;
     this.ponuda.zahtev = pomPonuda.zahtev;
     this.ponuda.tip = pomPonuda.tip;
-    this.ponuda.listaStavki = this.listaStavki;
-    console.log(this.listaStavki)
+    var sredjenaListaStavki=[];
+    this.ponuda.listaStavki = this.dajSredjenuListuStavki(this.listaStavki);
+
     const obj = {
       ponudaID: this.ponuda.ponudaID,
       datum: this.ponuda.datum,
@@ -257,9 +258,27 @@ export class PonudaComponent implements OnInit {
       },
       (error) => {
         console.log('Error:', error);
+
       }
     );
+    this.onReset();
+  }
 
+  private dajSredjenuListuStavki(listaStavki): StavkaModel[] {
+    
+    let sredjenaListaStavki = [];
+
+    listaStavki.forEach(stavka => {
+      var sredjenaStavka = {
+          jedimicaMere : stavka.jedimicaMere,
+          kolicina : stavka.kolicina,
+          proizvod : stavka.proizvod.naziv,
+          rb_stavke: stavka.rb_stavke
+      }
+      sredjenaListaStavki.push(sredjenaStavka);
+    });
+
+    return sredjenaListaStavki;
   }
 
   izmeniPonudu(){
@@ -270,7 +289,7 @@ export class PonudaComponent implements OnInit {
     this.ponuda.kupac = pomPonuda.kupac;
     this.ponuda.zahtev = pomPonuda.zahtev;
     this.ponuda.tip = pomPonuda.tip;
-    this.ponuda.listaStavki = this.listaStavki;
+    this.ponuda.listaStavki = this.dajSredjenuListuStavki(this.listaStavki);
     
     const obj = {
       ponudaID: this.ponuda.ponudaID,
@@ -288,11 +307,14 @@ export class PonudaComponent implements OnInit {
       },
       (error) => {
         console.log('Error:', error);
+        
       }
     );
+    this.onReset();
   }
 
   onReset() {
     this.ponudaForma.reset();
+    this.listaStavki = [];
   }
 }

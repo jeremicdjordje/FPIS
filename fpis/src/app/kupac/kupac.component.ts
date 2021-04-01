@@ -7,6 +7,7 @@ import { MetodeAPIService } from 'src/app/metode-api.service';
 import { MestoModel } from '../models/mestoModel';
 import { UlicaModel } from '../models/ulicaModel';
 import { Observable } from 'rxjs';
+import { formatCurrency } from '@angular/common';
 
 
 @Component({
@@ -101,13 +102,14 @@ export class KupacComponent implements OnInit {
     this.metodeAPI.unesiKupca(obj).subscribe(
       (data) => {
         console.log('Data:', data);
-        
+        alert("Kupac uspesno unet!")
       },
       (error) => {
         console.log('Error:', error);
+        
       }
     );
-
+      this.onReset();
   }
 
   azurirajKupca() {
@@ -135,12 +137,14 @@ export class KupacComponent implements OnInit {
     this.metodeAPI.azurirajKupca(obj).subscribe(
       (data) => {
         console.log('Data:', data);
+        alert("Kupac uspesno izmenjen!")
       },
       (error) => {
         console.log('Error:', error);
+        alert("Kupac uspesno izmenjen!")
       }
     );
-
+      this.kupacForma.reset();
   }
 
 
@@ -173,8 +177,6 @@ export class KupacComponent implements OnInit {
         }
         );
     }
-
-
   }
 
   obrisiKupca() {
@@ -184,15 +186,17 @@ export class KupacComponent implements OnInit {
     } else{
       console.log(this.pib)
       if(confirm("Da li želite da obrišete kupca sa PIB-om:  "+this.pib)) {
-        console.log("Implement delete functionality here");
         this.metodeAPI.obrisiKupca(this.pib).subscribe((data) => {
           console.log("Data", data);
+          alert("Kupac sa pibom:"+this.pib+" uspesno obrisan!")
+          this.kupacForma.reset();
         }, (error) => {
           console.log("Error:", error)
+          alert("Kupac sa pibom:"+this.pib+" uspesno obrisan!")
+          this.kupacForma.reset();
         });
       }
     }
-    
   }
 
   onReset() {

@@ -14,6 +14,7 @@ import com.fpis.repository.StavkaPonudeRepozitorijum;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -47,7 +48,7 @@ public class StavkaPonudeBroker {
 
     public Iterable<StavkaPonude> unesiSveStavke(List<StavkaZahtevDTO> stavke, Ponuda ponuda) {
         List<StavkaPonude> stavkePonude = vratiStavkePonude(stavke, ponuda);
-        
+
         return stavkaPonudeRepozitorijum.saveAll(stavkePonude);
     }
 
@@ -62,7 +63,7 @@ public class StavkaPonudeBroker {
             stavka.setPonuda(ponuda);
             stavkePonude.add(stavka);
         }
-        
+
         return stavkePonude;
     }
 
@@ -87,17 +88,26 @@ public class StavkaPonudeBroker {
         return "Stavka uspesno obrisana";
     }
 
-    public String azurirajStavke(List<StavkaZahtevDTO> stavke) {
-             for(int i = 0;i<stavke.size();i++){
-              StavkaZahtevDTO stavkaZahtev = stavke.get(i);
-              //dodajStavku(stavkaZahtev.getNazivProizvoda(), stavkaZahtev.getKolicina());
-              StavkaPonude stavka = new StavkaPonude();
-              Proizvod pr = proizvodRepozitorijum.findByNaziv(stavkaZahtev.getProizvod());
-              stavka.setProizvod(pr);
-              stavka.setKolicina(stavkaZahtev.getKolicina());
-              
-              stavkaPonudeRepozitorijum.save(stavka);
-            }
+    @Transactional
+    public String azurirajStavke(List<StavkaZahtevDTO> stavke, Ponuda ponuda) {
+        List<StavkaPonude> stavkePonude = new ArrayList();
+        
+
+        
+        stavkaPonudeRepozitorijum.deleteAllByPonudaId(ponuda.getPonudaID());
+        for (int i = 0; i < stavke.size(); i++) {
+            StavkaZahtevDTO stavkaZahtev = stavke.get(i);
+            //dodajStavku(stavkaZahtev.getNazivProizvoda(), stavkaZahtev.getKolicina());
+            StavkaPonude stavka = new StavkaPonude();
+            Proizvod pr = proizvodRepozitorijum.findByNaziv(stavkaZahtev.getProizvod());
+            stavka.setProizvod(pr);
+            stavka.setKolicina(stavkaZahtev.getKolicina());
+            stavka.setRb_stavke(stavkaZahtev.getRb_stavke());
+            stavka.setPonuda(ponuda);
+
+            stavkePonude.add(stavka);
+        }
+        stavkaPonudeRepozitorijum.saveAll(stavkePonude);
         return "Stavke uspesno azurirane";
     }
 

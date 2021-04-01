@@ -5,18 +5,28 @@
  */
 package com.fpis.dto;
 
-import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *
  * @author Djole
  */
-@Service
 public class StavkaZahtevDTO {
 
-    private int rb;
+    
+    
+    @JsonProperty("rb_stavke")
+    private int rb_stavke;
     private String proizvod;
     private Double kolicina;
+
+    public int getRb_stavke() {
+        return rb_stavke;
+    }
+
+    public void setRb_stavke(int rb_stavke) {
+        this.rb_stavke = rb_stavke;
+    }
 
     public String getProizvod() {
         return proizvod;
@@ -34,12 +44,7 @@ public class StavkaZahtevDTO {
         this.kolicina = kolicina;
     }
 
-    public int getRb() {
-        return rb;
-    }
+    
 
-    public void setRb(int rb) {
-        this.rb = rb;
-    }
-
+    
 }

@@ -31,7 +31,7 @@ import javax.persistence.TemporalType;
 public class Ponuda {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private int ponudaID;
     @Temporal(TemporalType.DATE)
     private Date datum;

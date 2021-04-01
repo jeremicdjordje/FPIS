@@ -4,6 +4,7 @@ package com.fpis.broker;
 
 import com.fpis.Kupac;
 import com.fpis.Ponuda;
+import com.fpis.StavkaPonude;
 import com.fpis.TipPlacanja;
 import com.fpis.Zahtev;
 import com.fpis.dto.PonudaDTO;
@@ -12,6 +13,12 @@ import com.fpis.repository.PonudaRepozitorijum;
 import com.fpis.repository.StavkaPonudeRepozitorijum;
 import com.fpis.repository.TipRepozitorijum;
 import com.fpis.repository.ZahtevRepozitorijum;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,10 +55,11 @@ public class PonudaBroker {
     }
 
     public Ponuda pronadjiPonuduPoID(Integer id) {
-       Optional<Ponuda> ponuda = ponudaRepozitorijum.findById(id);
+        Optional<Ponuda> ponuda = ponudaRepozitorijum.findById(id);
+       
        return ponuda.isPresent() == true ? ponuda.get() : null;
     }
-
+    
     public String unesiPonudu(PonudaDTO ponudaDTO) {
         if (ponudaDTO.getListaStavki().isEmpty()) {
             return "Broj stavki mora biti veci od 0";
@@ -94,12 +102,15 @@ public class PonudaBroker {
     public String azurirajPonudu(PonudaDTO ponudaDTO) {
         //azuriranje stavki
         Optional<Ponuda> ponuda = ponudaRepozitorijum.findById(ponudaDTO.getPonudaID());
-        stavkaPonudeBroker.azurirajStavke(ponudaDTO.getListaStavki());
+        stavkaPonudeBroker.azurirajStavke(ponudaDTO.getListaStavki(),ponuda.get());
         //azuriranje ponude
         Ponuda p = dajPonudu(ponudaDTO);
         Ponuda vracenaPonuda = ponudaRepozitorijum.save(p);
       
         return "Ponuda uspesno azurirana";
     }
+
+    
+    
     
 }

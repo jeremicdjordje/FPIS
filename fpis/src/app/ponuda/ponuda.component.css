@@ -67,6 +67,34 @@ button {
     color: white;
   }
 
+  .obrisiStavku {
+    width: 200px;
+    font-size: 12px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+  
+  .obrisiStavku:hover {
+    background-color: white;
+    color: #008CBA;
+  }
+  
+
+  .izmeniStavku {
+    width: 200px;
+    font-size: 12px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+  }
+
+  .izmeniStavku:hover {
+    background-color: white;
+    color: #008CBA;
+  }
+  
+
   #stavkaPonude {
     border-style: solid;
      border-width: 2px;
